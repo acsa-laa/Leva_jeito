@@ -45,7 +45,7 @@ def dicioAntigo(pasta): # Monta um dicionário 'arquivo':'hash' a partir do arqu
     l = dados.readlines()
     for linha in l: # Montando o dicionário
         data = linha.split(" > ") # Símbolo que separa o nome do arquivo da sua hash"
-        dicio[data[0]] = data[1][:len(data[1])-2] 
+        dicio[data[0]] = data[1][:len(data[1])-1] #o -1 pra tirar o \n
     return dicio
 
 def dicioAtual(pasta,metodo,key): #Função que cria o dicionário da pasta atual com todas as alterações
@@ -69,7 +69,7 @@ def dicioAtual(pasta,metodo,key): #Função que cria o dicionário da pasta atua
         if metodo == "hmac":
             hash_arq = gerarHmac(arq_aberto,key)
         arq_aberto.close()
-        dicio[f] = hash_arq[:len(hash_arq)-1]
+        dicio[f] = hash_arq
 
     return dicio
 
